@@ -6,10 +6,56 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Office Quiz!</title>
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/6255250c8f.js" 
+    crossorigin="anonymous">
+    </script>
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+    <form id="quiz" class="quiz-form">
+        <h1 class="quiz-title">The Office Quiz!</h1>
+        <div class="quiz-header">
+            <div class="number"></div>
+            <div class="time">00:00</div>
+        </div>
 
+        <div class="form-group">
+            <span id="quote"></span>
+            <div class="choices">
+                <div class="form-control">
+                    <input type="radio" name="q1" value="a" />
+                    <span class="ans-choice" id="o1"></span>
+                </div>
+                <div class="form-control">
+                    <input type="radio" name="q1" value="a" />
+                    <span class="ans-choice" id="o2"></span>
+                </div>
+                <div class="form-control">
+                    <input type="radio" name="q1" value="a" />
+                    <span class="ans-choice" id="o3"></span>
+                </div>
+                <div class="form-control">
+                    <input type="radio" name="q1" value="a" />
+                    <span class="ans-choice" id="o4"></span>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-footer">
+            <div class="score">Score: <span id="score"></span></div>
+            <input type="submit" class="btn-submit" value="Submit" />
+        </div>
+    </form>
+
+    <!-- Result -->
+    <div class="result-container">
+        <i class="fas fa-crown" aria-hidden="true"></i>
+        <p>You have completed the Quiz!</p>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="app.js"></script>
 </body>
-
 </html>
