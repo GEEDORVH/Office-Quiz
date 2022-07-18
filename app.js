@@ -82,3 +82,16 @@ function startTimer(duration, display) {
     }
   }, 1000);
 }
+function timeOut() {
+    checkAnswer();
+    score.innerHTML = points;
+    if (count === 10) {
+      quiz.style.display = 'none';
+      resultContainer.style.display = 'block';
+      clearInterval(interval);
+      result.style.display = 'block';
+      result.innerHTML = 'Your score is: ' + points;
+    }
+    count++;
+    number.innerHTML = 'Question ' + count + ' of 10';
+  }
