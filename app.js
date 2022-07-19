@@ -95,3 +95,65 @@ function timeOut() {
     count++;
     number.innerHTML = 'Question ' + count + ' of 10';
   }
+  
+window.onload = function () {
+    count++;
+    fetchData();
+    startQuiz();
+  
+    number.innerHTML = 'Question ' + count + ' of 10';
+  };
+  
+  function fetchData() {
+    var answers = [];
+    score.innerHTML = points;
+    fetch(
+      'https://protected-cove-56113.herokuapp.com/https://officeapi.dev/api/quotes/random'
+    )
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (data) {
+        document.getElementById('quote').innerHTML = data.data.content;
+        answers.push(
+          data.data.character.firstname + ' ' + data.data.character.lastname
+        );
+        correctAnswer = answers[0];
+  
+        fetch(
+          'https://protected-cove-56113.herokuapp.com/https://officeapi.dev/api/characters'
+        )
+          .then(function (response) {
+            return response.json();
+          })
+          .then(async function (data) {
+            var char = data.data;
+  
+            await char.sort(function () {
+              return 0.5 - Math.random();
+            });
+            for (var i = 0; i < char.length; i++) {
+              if (char[i].firstname + ' ' + char[i].lastname == answers[0]) {
+                char.splice(i, 1);
+              }
+            }
+            for (var i = 0; i < 3; i++) {
+              answers.push(char[i].firstname + ' ' + char[i].lastname);
+            }
+            await answers.sort(function () {
+              return 0.5 - Math.random();
+            });
+            document.getElementById('o1').innerHTML = answers[0];
+            document.getElementById('o2').innerHTML = answers[1];
+            document.getElementById('o3').innerHTML = answers[2];
+            document.getElementById('o4').innerHTML = answers[3];
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+  
